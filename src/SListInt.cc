@@ -28,7 +28,6 @@ SListInt::~SListInt()
     // Delete the node
     //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-    delete m_head_p;
 
     m_head_p = temp_p;
   }
@@ -71,9 +70,6 @@ void SListInt::swap( SListInt& lst )
   // Implement swap
   //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-  Node* tmp_p  = m_head_p;
-  m_head_p     = lst.m_head_p;
-  lst.m_head_p = tmp_p;
 }
 
 //------------------------------------------------------------------------
@@ -101,10 +97,6 @@ void SListInt::push_front( int v )
   // Implement push_front
   //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-  Node* new_node_p   = new Node;
-  new_node_p->value  = v;
-  new_node_p->next_p = m_head_p;
-  m_head_p           = new_node_p;
 }
 
 //------------------------------------------------------------------------
@@ -134,11 +126,6 @@ int SListInt::at( int idx ) const
   // Implement at
   //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-  Node* curr_p = m_head_p;
-  for ( int i = 0; i < idx; i++ )
-    curr_p = curr_p->next_p;
-
-  return curr_p->value;
 }
 
 //------------------------------------------------------------------------
@@ -151,11 +138,6 @@ int& SListInt::at( int idx )
   // Implement at
   //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-  Node* curr_p = m_head_p;
-  for ( int i = 0; i < idx; i++ )
-    curr_p = curr_p->next_p;
-
-  return curr_p->value;
 }
 
 //------------------------------------------------------------------------
@@ -176,15 +158,6 @@ void SListInt::reverse_v1()
   // Implement reverse_v1
   //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-  int n = size();
-  for ( int i = 0; i < n/2; i++ ) {
-    int lo = i;
-    int hi = (n-1)-i;
-
-    int tmp = at(lo);
-    at(lo)  = at(hi);
-    at(hi)  = tmp;
-  }
 }
 
 //------------------------------------------------------------------------
@@ -203,18 +176,6 @@ void SListInt::reverse_v2()
   // Implement reverse_v2
   //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-  // Step 1. Create temporary list
-  SListInt lst;
-
-  // Step 2. Push front all values from this list onto temporary list
-  Node* curr_p = m_head_p;
-  while ( curr_p != nullptr ) {
-    lst.push_front( curr_p->value );
-    curr_p = curr_p->next_p;
-  }
-
-  // Step 3. Swap this list with temporary list
-  swap( lst );
 }
 
 //------------------------------------------------------------------------
